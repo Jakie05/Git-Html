@@ -76,7 +76,7 @@
       node n:
     </p>
 
-    <font size="+2" color="#660000">
+    <font size="+1" color="#660000">
       <pre><code>
         boolean solve(Node n) {
     if n is a leaf node {
@@ -126,11 +126,11 @@
       child of<code> n</code>. In the above code, this is done by the lines
     </p>
 
-    <pre>
+    <pre><font size="+1" color="#660000">
         for each child c of n {
             if solve(c) succeeds, return true
         }
-        return false</pre
+        return false</font></pre
     >
 
     <p>
@@ -140,10 +140,10 @@
       by the lines
     </p>
 
-    <pre>
+    <pre><font size="+1" color="#660000">
 if n is a leaf node {
     if the leaf is a goal node, return true
-    else return false
+    else return false</font>
 }</pre
     >
 
@@ -480,24 +480,24 @@ public static void main(String args[]) {
   that does the backtracking.</p>
 
   <dl> 
-  <dt><font color="#660000" size=+2><code>boolean mapIsOK()</code></font></dt>
+  <dt><font color="#660000" size=+1><code>boolean mapIsOK()</code></font></dt>
   <dd>Used by method 1 to check (at a leaf node) whether the entire map is colored 
     correctly.
     <br /><br />
   </dd>
-  <dt><font color="#660000" size=+2><code>boolean okToColor(int row, int column, int color)</code></font></dt>
+  <dt><font color="#660000" size=+1><code>boolean okToColor(int row, int column, int color)</code></font></dt>
   <dd>Used by method 2 to check, at every node, whether there is an adjacent node 
     already colored with the given color.
     <br /><br />
   </dd>
-  <dt><font color="#660000" size=+2><code>int[] nextRowAndColumn(int row, int column)</code></font></dt>
+  <dt><font color="#660000" size=+1><code>int[] nextRowAndColumn(int row, int column)</code></font></dt>
   <dd>Used by both methods to find the next "country" (actually, the 
     row and column of the next square on the checkerboard).</dd>
 </dl>
 
 <p>Here's the code for method 1:</p>
 <blockquote>
- <font color="#660000" size=+2> <pre>boolean explore1(int row, int column, int color) {
+ <font color="#660000" size=+1> <pre>boolean explore1(int row, int column, int color) {
     if (row &gt;= NUM_ROWS) <b>return mapIsOK()</b>;
     map[row][column] = color;
     for (int nextColor = RED; nextColor &lt;= BLUE; nextColor++) {
@@ -510,7 +510,7 @@ public static void main(String args[]) {
 
 <p>And here's the code for method 2:</p>
 <blockquote>
- <font color="#660000" size=+2>  <pre>boolean explore2(int row, int column, int color) {
+ <font color="#660000" size=+1>  <pre>boolean explore2(int row, int column, int color) {
     if (row &gt;= NUM_ROWS) <b>return true</b>;
     <b>if (okToColor(row, column, color)) {</b>
         map[row][column] = color;
@@ -581,7 +581,7 @@ public static void main(String args[]) {
   code than actual code, but in larger programs the proportions will be better.</p>
 
   <blockquote>
- <font color="#660000" size=+2><pre>static String indent = "";
+ <font color="#660000" size=+1><pre>static String indent = "";
 
 static String name(BinaryTree node) {
     if (node == null) return null;
@@ -608,7 +608,7 @@ static boolean no(BinaryTree node) {
 
 <p>To use this code, we modify solvable as follows:</p>
 <blockquote>
-  <font color="#660000" size=+2><pre>static boolean solvable(BinaryTree node) {
+  <font color="#660000" size=+1><pre>static boolean solvable(BinaryTree node) {
     <b>enter(node)</b>;
     if (node == null) return <b>no(node)</b>;
     if (node.isGoalNode) return <b>yes(node)</b>;
@@ -620,7 +620,7 @@ static boolean no(BinaryTree node) {
 
 <p>And we get these results:</p>
 <blockquote>
-  <pre> <font color="black" size=+2><b>Entering solvable(Root)
+  <pre> <font color="black" size=+1><b>Entering solvable(Root)
 |  Entering solvable(A)
 |  |  Entering solvable(C)
 |  |  |  Entering solvable(null)
@@ -649,14 +649,14 @@ true</b></font></pre>
   <p>Obviously, you don't want to print out all this debugging information from 
   a program you are ready to submit (or to turn over to your manager). You could 
   comment out your debugging calls, but that can be a lot of work. What's more, 
-  in the above example, you would have to replace every<font color="#660000" size=+2> <code>return(yes(node)) 
-  </code></font>with<code><font color="#660000" size=+2> return(true)</font></code>, and every<code><font color="#660000" size=+2>return(no(node))</font></code> 
-  with<code> <font color="#660000" size=+2>return false</font></code>. With all these changes, you might introduce 
+  in the above example, you would have to replace every<font color="#660000" size=+1> <code>return(yes(node)) 
+  </code></font>with<code><font color="#660000" size=+1> return(true)</font></code>, and every<code><font color="#660000" size=+1>return(no(node))</font></code> 
+  with<code> <font color="#660000" size=+1>return false</font></code>. With all these changes, you might introduce 
   new bugs into your program.</p>
 <p>The simple solution is to make your debugging statements <i>conditional.</i> 
   For example,</p>
   <blockquote> 
- <font color="#660000" size=+2><pre><b>static final boolean debugging = false;</b>
+ <font color="#660000" size=+1><pre><b>static final boolean debugging = false;</b>
 
 static void enter(BinaryTree node) {
     <b>if (debugging) {</b>
@@ -684,8 +684,8 @@ static boolean no(BinaryTree node) {
 
 In industry, actual programs often have multiple flags to control different aspects 
 of debugging. Don't worry too much about making your code larger; modern compilers 
-will notice that since the variable <code><font color="#660000" size=+2>debugging</font></code> is <code><font color="#660000" size=+2>final</font></code>, 
-it can never be <code><font color="#660000" size=+2>true</font></code>, and the controlled code will be discarded. 
+will notice that since the variable <code><font color="#660000" size=+1>debugging</font></code> is <code><font color="#660000" size=+1>final</font></code>, 
+it can never be <code><font color="#660000" size=+1>true</font></code>, and the controlled code will be discarded. 
 
 <p><b>Trick #4: Create an Exception. </b>If an Exception is thrown, you can get 
   information about just where it happened by sending it the message<code> printStackTrace(PrintStream)</code>. 
@@ -695,12 +695,12 @@ it can never be <code><font color="#660000" size=+2>true</font></code>, and the 
   code</p>
 
   <blockquote>
- <font color="#660000" size=+2> <pre>new Exception("Checkpoint Charlie").printStackTrace(System.out);</pre></font>
+ <font color="#660000" size=+1> <pre>new Exception("Checkpoint Charlie").printStackTrace(System.out);</pre></font>
 </blockquote>
 <p>will print out a message something like this, and the program will then continue 
   normally. That is, the above code just acts like a print statement.</p>
 <blockquote>
-  <font color="#660000" size=+2><pre>java.lang.Exception: Checkpoint Charlie
+  <font color="#660000" size=+1><pre>java.lang.Exception: Checkpoint Charlie
         at TreeSearch.solvable(TreeSearch.java:53)
         at TreeSearch.solvable(TreeSearch.java:57)
         at TreeSearch.main(TreeSearch.java:72)
@@ -901,7 +901,7 @@ it can never be <code><font color="#660000" size=+2>true</font></code>, and the 
 
 
 <blockquote>
-  <font color="#660000" size=+2> <pre>boolean solvable(int[] board) {
+  <font color="#660000" size=+1> <pre>boolean solvable(int[] board) {
     if (puzzleSolved(board)) {
         return true;
     }
@@ -918,8 +918,8 @@ it can never be <code><font color="#660000" size=+2>true</font></code>, and the 
 }</pre></font>
 </blockquote>
 
-<p>Along with <code> <font color="#660000" size=+2>canMove</font></code> and <code> <font color="#660000" size=+2>>makeMove</font></code>, we are using methods 
-  <code> <font color="#660000" size=+2>puzzleSolved</font></code> and <code>  <font color="#660000" size=+2>printBoard</font></code> with meanings that should 
+<p>Along with <code> <font color="#660000" size=+1>canMove</font></code> and <code> <font color="#660000" size=+1>makeMove</font></code>, we are using methods 
+  <code> <font color="#660000" size=+1>puzzleSolved</font></code> and <code>  <font color="#660000" size=+1>printBoard</font></code> with meanings that should 
   be obvious.</p>
 
 
